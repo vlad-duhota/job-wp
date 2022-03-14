@@ -2,12 +2,12 @@
     <div class="container">
       <div class="copyright-block wow animate__animated animate__fadeInLeft">
         <a href="#" class="logo">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/logo.svg" alt="logo icon" />
-          FindYour<span>Job</span>
+        <img src="<?php echo carbon_get_theme_option('site_logo')?>" alt="logo icon" />
+          <?php echo carbon_get_theme_option('site_logo_text')?><span><?php echo carbon_get_theme_option('site_logo_text_span')?></span>
         </a>
         <p>
-          Сайт с вакансиями для тех, кто ищет удаленную работу
-          <span>&copy; 2021</span>
+          <?php echo carbon_get_theme_option('copy_text')?>
+          <span><?php echo carbon_get_theme_option('copy_symbol')?> <?php echo date('Y')?></span>
         </p>
       </div>
 
@@ -15,10 +15,10 @@
         <h3>Свяжитесь с нами</h3>
         <ul>
           <li>
-            <a href="tel:88002020300">8 800 20 20 300</a>
+            <a href="tel:<?php echo carbon_get_theme_option('phone')?>"><?php echo carbon_get_theme_option('phone')?></a>
           </li>
           <li>
-            <a href="mailto:info@findyourjob.net">info@findyourjob.net</a>
+            <a href="mailto:<?php echo carbon_get_theme_option('email')?>"><?php echo carbon_get_theme_option('email')?></a>
           </li>
         </ul>
       </div>

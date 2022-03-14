@@ -5,6 +5,12 @@ Template Name: Home page
 */
 ?>
 
+<?php
+  $page_id = get_the_ID();
+  $label_block = carbon_get_post_meta($page_id, 'label_block');
+  $categories = carbon_get_post_meta($page_id, 'categories');
+?>
+
 
 <body class="page">
     <?php get_header(); ?>
@@ -14,65 +20,46 @@ Template Name: Home page
       <div id="ambient"></div>
       <div class="container">
         <div class="flex-column wow animate__animated animate__fadeInLeft">
-          <h1>Найдите удаленную работу вашей мечты</h1>
+          <h1><?php echo carbon_get_post_meta($page_id, 'site_offer')?></h1>
           <p class="subtitle">
-            Создайте резюме или отправьте отклик на вакансию в компании с
-            мировым именем и работайте по свободному графику
+          <?php echo carbon_get_post_meta($page_id, 'hero_subtitle')?>
           </p>
           <form action="#" class="search-form">
-            <input type="search" name="" id="" placeholder="Начните поиск" class="input"/>
+            <input type="search" placeholder="<?php echo carbon_get_post_meta($page_id, 'search_text')?>" class="input"/>
             <button type="submit" class="btn">
-              <img src="<?php echo get_template_directory_uri();?>/assets/img/search.svg" alt="" />
-              <span>Искать вакансии</span>
+              <img src="<?php echo carbon_get_post_meta($page_id, 'search_btn_img')?>" />
+              <span><?php echo carbon_get_post_meta($page_id, 'search_btn_text')?></span>
             </button>
           </form>
+          <?php if(! empty($label_block)) : ?>
           <p class="label-block">
             Например:
             <br />
-            <span> Front-end</span>
-            <span> Back-end</span>
-            <span> Designer</span>
+            <?php foreach($label_block as $label) : ?>
+            <span><?php echo $label['label'] ?></span>
+            <?php endforeach ?>
           </p>
+          <?php endif ?>
         </div>
         <div class="flex-column wow animate__animated animate__fadeInRight">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/hero-image.svg" alt="" />
+          <img src="<?php echo carbon_get_post_meta($page_id, 'hero_img')?>" />
         </div>
       </div>
     </section>
     <section class="category">
       <div class="container">
-        <h2>Категории</h2>
-        <input type="radio" checked name="tabs" id="tab1"/>
-          <label for="tab1" class="wow animate__animated animate__fadeInLeft">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/brush.svg" alt=""/>
-          Дизайн
-        </label>
-        <input type="radio" name="tabs" id="tab2"/>
-        <label for="tab2" class="wow animate__animated animate__fadeInLeft">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/brush.svg" alt=""/>
-          Разработка
-        </label>
-        <input type="radio" name="tabs" id="tab3"/>
-        <label for="tab3" class="wow animate__animated animate__fadeInLeft">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/brush.svg" alt=""/>
-          Копирайтинг
-        </label>
-        <input type="radio" name="tabs" id="tab4"/>
-        <label for="tab4" class="wow animate__animated animate__fadeInRight">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/brush.svg" alt=""/>
-          Безопасность
-        </label>
-        <input type="radio" name="tabs" id="tab5"/>
-        <label for="tab5" class="wow animate__animated animate__fadeInRight">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/brush.svg" alt=""/>
-          Видео
-        </label>
-        <input type="radio" name="tabs" id="tab6"/>
-        <label for="tab6" class="wow animate__animated animate__fadeInRight">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/brush.svg" alt=""/>
-          Образование
-        </label>
-
+        <h2><?php echo carbon_get_post_meta($page_id, 'categories_title')?></h2>
+          <?php $category_index = 0; ?>
+          <?php foreach($categories as $category) : ?>
+          <?php 
+            $category_index++;
+          ?>
+            <input type="radio" name="tabs" id="tab<?php echo $category_index?>"/>
+            <label for="tab<?php echo $category_index?>" class="wow animate__animated animate__fadeInDown">
+            <img src="<?php echo $category['category_photo']?>"/>
+            <?php echo $category['category_name']?>
+            </label>
+            <?php endforeach ?>
         <div class="tab tab1 animate__animated animate__fadeInLeft">
           <h2>Свежие вакансии Дизайн</h2>
           <div class="tab-content ">
@@ -414,13 +401,13 @@ Template Name: Home page
       </div>
     </section>
     <section class="mailing">
-      <h2 class="wow animate__animated animate__fadeInDown">Подпишитесь на рассылку с новыми вакансиями</h2>
-      <p class="subtitle wow animate__animated animate__fadeInUp">Мы отправляем по одному письму в неделю с подходящими вам вакансиями</p>
+      <h2 class="wow animate__animated animate__fadeInDown"><?php echo carbon_get_post_meta($page_id, 'mail_title')?></h2>
+      <p class="subtitle wow animate__animated animate__fadeInUp"><?php echo carbon_get_post_meta($page_id, 'mail_subtitle')?></p>
       <form action="#" class="mailing-form wow animate__animated animate__fadeInUp">
-        <input type="email" name="" id="" placeholder="Начните поиск" class="input" />
+        <input type="email" placeholder="<?php echo carbon_get_post_meta($page_id, 'mail_form_text')?>" class="input" />
         <button type="submit" class="btn">
-          <img src="<?php echo get_template_directory_uri();?>/assets/img/mail.svg" alt="mailing box icon"/>
-          <span>Подписаться</span>
+          <img src="<?php echo carbon_get_post_meta($page_id, 'mail_form_btn_img')?>" alt="mailing box icon"/>
+          <span><?php echo carbon_get_post_meta($page_id, 'mail_form_btn_text')?></span>
         </button>
       </form>
     </section>

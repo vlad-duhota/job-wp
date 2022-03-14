@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Find our job</title>
+  <title>FindYourJob</title>
   <!-- animate css -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
   
@@ -15,10 +15,10 @@
 
 <header class="header wow animate__animated animate__fadeInDown">
     <div class="container">
-      <a href="#" class="logo">
-        <img src="<?php echo get_template_directory_uri();?>/assets/img/logo.svg" alt="logo icon" />
-        FindYour<span>Job</span>
-      </a>
+    <a href="#" class="logo">
+          <img src="<?php echo carbon_get_theme_option('site_logo')?>" alt="logo icon" />
+          <?php echo carbon_get_theme_option('site_logo_text')?><span><?php echo carbon_get_theme_option('site_logo_text_span')?></span>
+        </a>
 
       <input type="checkbox" name="" id="togle" />
       <label for="toggle">
@@ -40,8 +40,8 @@
       </nav>
 
       <div class="account">
-        <a class="login" href="#">Войти</a>
-        <a class="register" href="#">Регистрация</a>
+        <a class="login" href="#"><?php echo carbon_get_theme_option('login_btn_text')?></a>
+        <a class="register" href="#"><?php echo carbon_get_theme_option('register_btn_text')?></a>
       </div>
     </div>
   </header>
